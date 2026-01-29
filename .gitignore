@@ -4,3 +4,7 @@ out
 .config
 .config.old
 klippy/.version
+.config*
+klippy/extras/mmu/
+klippy/extras/mmu_*.py
+klippy/extras/probe_eddy_ng.py.bak_*
