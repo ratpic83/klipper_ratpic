@@ -2291,7 +2291,14 @@ class ProbeEddyScanningProbe:
         # Allow axis_twist_compensation to update results
         for epos in results:
             self._printer.send_event("probe:update_results", epos)
-
+        
+        # Convert results to objects with bed_x, bed_y, bed_z attributes
+        # for compatibility with quad_gantry_level and other modules
+        class ProbeResult:
+            def __init__(self, x, y, z):
+                self.bed_x, self.bed_y, self.bed_z = x, y, z
+        
+        results = [ProbeResult(x, y, z) for x, y, z in results]
         return results
 
 
